@@ -40,6 +40,8 @@ public class BancoTest {
 		// Ação
 		banco.cadastrarConta(conta1);
 		banco.cadastrarConta(conta2);
+
+		assertEquals(1, banco.obterContas().size());
 	}
 
 	@Test(expected = ContaComNumeroInvalido.class)
@@ -53,6 +55,8 @@ public class BancoTest {
 		if (banco.validarNumConta(contaAkira.getNumeroConta())){
 			banco.cadastrarConta(contaAkira);
 		}
+
+		assertEquals(2, banco.obterContas().size());
 	}
 
 
@@ -68,6 +72,8 @@ public class BancoTest {
 
 		banco.cadastrarConta(conta1);
 		banco.cadastrarConta(conta2);
+
+		assertEquals(1, banco.obterContas().size());
 	}
 
 
