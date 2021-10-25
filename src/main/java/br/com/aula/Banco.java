@@ -22,7 +22,7 @@ public class Banco {
 		for (Conta c : contas) {
 			boolean isNomeClienteIgual = c.getCliente().getNome().equals(conta.getCliente().getNome());
 			boolean isNumeroContaIgual = c.getNumeroConta() == conta.getNumeroConta();
-			boolean isNumeroInvalido = c.getNumeroConta() != 0;
+			boolean isNumeroInvalido = c.getNumeroConta() == 0;
 
 			if (isNumeroContaIgual) {
 				throw new ContaJaExistenteException();

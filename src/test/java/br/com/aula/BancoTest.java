@@ -1,12 +1,11 @@
 package br.com.aula;
 
 import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 import java.util.Arrays;
 
 import br.com.aula.exception.*;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class BancoTest {
 
@@ -26,7 +25,7 @@ public class BancoTest {
 	}
 
 	@Test(expected = ContaJaExistenteException.class)
-	public void naoDeveCadastrarContaNumeroRepetido() throws ContaJaExistenteException, ContaComNumeroInvalido, ContaComNomeJaExistenteException {
+	public void naoDeveCadastrarContaNumeroRepetido() throws ContaComNomeJaExistenteException, ContaComNumeroInvalido, ContaJaExistenteException {
 
 		// Cenario
 		Cliente cliente = new Cliente("Felipe");
@@ -38,10 +37,9 @@ public class BancoTest {
 		Banco banco = new Banco();
 
 		// Ação
+
 		banco.cadastrarConta(conta1);
 		banco.cadastrarConta(conta2);
-
-		assertEquals(1, banco.obterContas().size());
 	}
 
 	@Test(expected = ContaComNumeroInvalido.class)
@@ -55,10 +53,7 @@ public class BancoTest {
 		if (banco.validarNumConta(contaAkira.getNumeroConta())){
 			banco.cadastrarConta(contaAkira);
 		}
-
-		assertEquals(2, banco.obterContas().size());
 	}
-
 
 	@Test(expected = ContaComNomeJaExistenteException.class)
 	public void naoDeveCadastrarContaComNome() throws ContaComNomeJaExistenteException, ContaComNumeroInvalido, ContaJaExistenteException {
@@ -72,10 +67,7 @@ public class BancoTest {
 
 		banco.cadastrarConta(conta1);
 		banco.cadastrarConta(conta2);
-
-		assertEquals(1, banco.obterContas().size());
 	}
-
 
 	@Test
 	public void deveEfetuarTransferenciaContasCorrentesPoupanca() throws ContaSemSaldoException, ContaNaoExistenteException, TransferirValorNegativo {
@@ -84,7 +76,7 @@ public class BancoTest {
 		Cliente cliente = new Cliente("Joao");
 		Conta contaOrigem = new Conta(cliente, 123, 100, TipoConta.POUPANCA);
 
-		Cliente cliente2 = new Cliente("Ana");
+		Cliente cliente2 = new Cliente("Amanda");
 		Conta contaDestino = new Conta(cliente2, 456, 0, TipoConta.CORRENTE);
 
 		Banco banco = new Banco(Arrays.asList(contaOrigem, contaDestino));
